@@ -1,0 +1,78 @@
+﻿using Microsoft.AspNetCore.Mvc;
+using HouseRentingSystem.Core.Models.House;
+using Microsoft.AspNetCore.Authorization;
+
+namespace HouseRentingSystem.Controllers
+{
+    [Authorize]
+    public class HouseController : Controller
+    {
+        [AllowAnonymous]
+        public async Task<IActionResult> All()
+        {
+            var model = new HousesQueryModel();
+
+            return View();
+        }
+
+        public async Task<IActionResult> Mine()
+        {
+            var model = new HousesQueryModel();
+
+            return View();
+        }
+
+        [AllowAnonymous]
+        public async Task<IActionResult> Details(int id)
+        {
+            var model = new HouseDetailsModel();
+         
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add(HouseModel model)
+        {
+            int id = 1;
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var model = new HouseModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, HouseModel model)
+        {
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return RedirectToAction(nameof(All), new { id });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Rent(int id)
+        {
+            return RedirectToAction(nameof(Mine), new { id });
+        }
+        [HttpPost]
+        public async Task<IActionResult> Leave(int id)
+        {
+            return RedirectToAction(nameof(Mine), new { id });
+        }
+    }
+}
