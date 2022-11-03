@@ -45,7 +45,7 @@ namespace HouseRentingSystem.Infrastructure.Data
 
         public string? RenterId { get; set; }
 
-        [ForeignKey(nameof(Renter))]
+        [ForeignKey(nameof(RenterId))]
         public IdentityUser? Renter{ get; set; }
     }
 }
