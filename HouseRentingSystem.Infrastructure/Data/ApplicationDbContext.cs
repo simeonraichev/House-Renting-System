@@ -9,5 +9,18 @@ namespace HouseRentingSystem.Infrastructure.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+        }
+
+        public DbSet<House> Houses { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Agent> Agents { get; set; }
+
+
     }
 }
